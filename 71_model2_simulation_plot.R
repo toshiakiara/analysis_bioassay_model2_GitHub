@@ -148,8 +148,8 @@ lab_x <- c(
     expression("Mean of LD"[50])
 )
 lab_y <- c(
-    expression("Difference of TD"[50]),
-    expression("Difference of LD"[50])
+    expression("Differences in TD"[50]),
+    expression("Differences in LD"[50])
 )
 
 p_BA <- lapply(1:2, function(i) {

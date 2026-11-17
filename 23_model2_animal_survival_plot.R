@@ -1,7 +1,6 @@
 #!/usr/bin/env Rscript
 
 library(survminer)
-library(RColorBrewer)
 library(patchwork)
 
 
@@ -30,10 +29,9 @@ dose_str <- lapply(dat_raw, function(x) {
 
 .theme <- list(
     labs(x = "Reaction time (min)",
-         color = "Dose (mg/kg)"),
+         linetype = "Dose (mg/kg)"),
     scale_x_continuous(breaks = seq(0, 10, by = 2), minor_breaks = NULL),
     coord_cartesian(ylim = c(0, 1)),
-    scale_color_brewer(palette = "Dark2"),
     geom_hline(yintercept = 0.5, linetype = "dotted"),
     theme(
         axis.text = element_text(size = 12, color = "black"),
@@ -44,7 +42,8 @@ dose_str <- lapply(dat_raw, function(x) {
         strip.text = element_text(size = 14),
         legend.position = "right",
         legend.text = element_text(size = 12),
-        legend.title = element_text(size = 12)
+        legend.title = element_text(size = 12),
+        legend.key.width = unit(15, "mm")
     )
 )
 
@@ -54,7 +53,9 @@ p <- lapply(1:2, function(i) {
         res_surv[[i]],
         dat_raw[[i]],
         fun = "event",
-        size = 0.7, alpha = 0.8,
+        size = 0.7, 
+        color = "black",
+        linetype = 1:5,
         surv.scale = "percent",
         censor.shape = "|",
         legend.lab = dose_str[[i]],
